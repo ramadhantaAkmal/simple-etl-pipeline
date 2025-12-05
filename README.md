@@ -1,8 +1,8 @@
-# Capstone 1 - ETL Pipeline Capstone Project
+# Simple ETL Pipeline Project
 
 ## Overview
 
-This project, completed by Mohamad Akmal Ramadhanta as part of the Purwadhika School Data Engineering curriculum, focuses on programming fundamental. The datasets, sourced from Kaggle, consist of multiple CSV files that are cleaned, transformed, and merged into a single CSV file using Python and the pandas library. The resulting dataset is structured and ready for further analysis.
+This project is to demonstrate ETL pipelining using only python and pandas. The datasets, sourced from Kaggle, consist of multiple CSV files that are cleaned, transformed, and merged into a single CSV file using Python and the pandas library. The resulting dataset is structured and ready for further analysis.
 
 ## Technology Used
 - **Python**
