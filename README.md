@@ -26,52 +26,22 @@ This project is to demonstrate ETL pipelining using only python and pandas. The 
 
 This project demonstrates the creation of an ETL pipeline to process multiple CSV datasets from Kaggle. Using Python and pandas, the data is cleaned, transformed, and consolidated into a single analysis-ready CSV file. All of the program process will be recorded into log files. The exercise was conducted as part of the Purwadhika School Data Engineering curriculum.
 
-## Setup Instructions
+## Architecture
+```mermaid
+    flowchart TD
+      datasource[Source Data #40;Kaggle#41;]
+      extract[Extract]
+      transform[Transform]
+      load[Load]
+      logger[Logger]
+      dwh[Data Warehouse #40;local directory#41;]
+      log[Log Directory]
 
-### Prerequisites
-- Download your Kaggle API key (`kaggle.json`) from [Kaggle](https://www.kaggle.com).
-- Place the `kaggle.json` file in the appropriate directory:
-  - **Linux/macOS**: `~/.kaggle/kaggle.json`
-  - **Windows**: `C:\Users\<YourUsername>\.kaggle\kaggle.json`
-- Ensure the `EXTRACT_PATH` and `LOAD_PATH` variables are configured in `settings.py` located in the `config` directory.
-
-### Recommended Environment
-- **Linux** or **macOS** is recommended for running the program.
-
-### Installation
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/ramadhantaAkmal/etl-pipeline-capstone-project.git
-   ```
-
-2. **Create and activate virtual environment:**
-   ```bash
-   python -m venv .venv
-   source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-   ```
-
-3. **Install dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. **Configure directory path:**
-   - Edit `config/setting.py` on where you want to store the file
-
-### Running the Program
-- **Linux/macOS**:
-  1. Navigate to the project directory.
-  2. Run the shell script:
-     ```bash
-     ./run-etl-script.sh
-     ```
-- **Windows**:
-  1. Navigate to the project directory.
-  2. Run the main Python script:
-     ```bash
-     python main.py
-     ```
-
-## Notes
-- Ensure all dependencies (Python, pandas, and others listed in the project) are installed.
-- The data transformation process is documented in the linked Jupyter Notebook.
+      datasource --> extract
+      extract -->|csv to dataframe| transform
+      transform -->|wide to long format| load
+      load -->  dwh
+      extract --> logger
+      transform --> logger
+      load --> logger
+      logger --> log
